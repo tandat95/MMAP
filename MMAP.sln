@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMAP", "MMAP\MMAP.csproj", "{D30DEBF9-3D2C-4BC7-A18A-F78A9E2DBD76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D30DEBF9-3D2C-4BC7-A18A-F78A9E2DBD76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30DEBF9-3D2C-4BC7-A18A-F78A9E2DBD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30DEBF9-3D2C-4BC7-A18A-F78A9E2DBD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30DEBF9-3D2C-4BC7-A18A-F78A9E2DBD76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F28E42E0-4BD8-4ED5-857D-D99A0EB88975}
+	EndGlobalSection
+EndGlobal
