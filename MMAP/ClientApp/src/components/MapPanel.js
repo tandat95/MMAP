@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     map: {
-        width: '100%',
+        display: 'flex',
         height: '100%'
     }
 });
@@ -14,9 +14,10 @@ export default function MapPanel() {
     const initMap = () => {
         var mapContainer = document.getElementById("mapContainer");
         var mapProp = {
-            center: new window.vietbando.LatLng(14.102783, 109.649506),
-            zoom: 10,
-            minZoom: 2
+            center: new window.vietbando.LatLng(10.763126, 106.649285),
+            zoom: 15,
+            minZoom: 2,
+            zoomControl: false
         };
         var map = new window.vietbando.Map(mapContainer, mapProp);
     }

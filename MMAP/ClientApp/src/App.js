@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import MapPanel from './components/MapPanel';
-import Button from '@material-ui/core/Button';
 
+import DrawerLeft from './components/DrawerLeft';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default class App extends Component {
-  displayName = App.name
-  render() {
-    return (
-      <MapPanel />
-    );
-  }
+export default function App() {
+  return (
+    <DrawerLeft />
+  );
+
 }

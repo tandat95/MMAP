@@ -3,27 +3,25 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeftTwoTone';
+import ChevronRightIcon from '@material-ui/icons/ChevronRightTwoTone';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MapPanel from './MapPanel';
+import SearchBar from './SearchBar';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    height: '100vh'
+    height: '100vh',
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -55,9 +53,12 @@ const useStyles = makeStyles(theme => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(0, 0.5),
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+  },
+  appName: {
+    color: 'darkcyan'
   },
   content: {
     flex: 1,
@@ -77,60 +78,40 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function DrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [state, setOpen] = React.useState({ open: false });
 
   function handleDrawerOpen() {
-    setOpen(true);
+    setOpen({ open: true });
   }
 
   function handleDrawerClose() {
-    setOpen(false);
+    setOpen({ open: false });
   }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
+        //variant="permanent"
         anchor="left"
-        open={open}
+        open={state.open}
         classes={{
           paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
+          <h1 className={classes.appName} > My Map</h1>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Dat', 'Dat', 'Dat', 'Dat'].map((text, index) => (
+          {['Dat1', 'Dat2', 'Dat3', 'Dat4'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
@@ -139,7 +120,7 @@ export default function PersistentDrawerLeft() {
         </List>
         <Divider />
         <List>
-          {['Dat', 'Dat', 'Dat'].map((text, index) => (
+          {['Dat5', 'Dat6', 'Dat7'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
@@ -148,13 +129,14 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
       <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
+        className={classes.content}
+      // className={clsx(classes.content, {
+      //   [classes.contentShift]: state.open,
+      // })}
       >
-        <div className={classes.drawerHeader} />
+        <SearchBar handlerOpenMenu={handleDrawerOpen} />
         <MapPanel />
       </main>
-    </div>
+    </div >
   );
 }
