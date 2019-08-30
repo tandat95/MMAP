@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +13,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MapPanel from './MapPanel';
-import SearchBar from './SearchBar';
-
+import Tbar from './Tbar';
+import { observer } from 'mobx-react';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -78,18 +77,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DrawerLeft() {
+export default observer(({ store }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [state, setOpen] = React.useState({ open: false });
-
-  function handleDrawerOpen() {
-    setOpen({ open: true });
-  }
-
-  function handleDrawerClose() {
-    setOpen({ open: false });
-  }
 
   return (
     <div className={classes.root}>
@@ -98,14 +88,14 @@ export default function DrawerLeft() {
         className={classes.drawer}
         //variant="permanent"
         anchor="left"
-        open={state.open}
+        open={store.isOpen}
         classes={{
           paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
           <h1 className={classes.appName} > My Map</h1>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={store.toggleClose.bind(store)}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
@@ -134,9 +124,9 @@ export default function DrawerLeft() {
       //   [classes.contentShift]: state.open,
       // })}
       >
-        <SearchBar handlerOpenMenu={handleDrawerOpen} />
+        <Tbar handlerOpenMenu={store.toggleOpen.bind(store)} />
         <MapPanel />
       </main>
     </div >
   );
-}
+})

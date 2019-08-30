@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import DrawerLeft from './components/DrawerLeft';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+import store from './store/DrawerStore';
 
 export default function App() {
   return (
-    <DrawerLeft />
+    <DrawerLeft store={store} />
   );
-
 }

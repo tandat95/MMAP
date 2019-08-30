@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 
 export default function MapPanel() {
     const classes = useStyles();
-    const [state, setState] = React.useState(false);
+    const [state] = React.useState(false);
     const initMap = () => {
         var mapContainer = document.getElementById("mapContainer");
         var mapProp = {
@@ -19,7 +19,7 @@ export default function MapPanel() {
             minZoom: 2,
             zoomControl: false
         };
-        var map = new window.vietbando.Map(mapContainer, mapProp);
+        new window.vietbando.Map(mapContainer, mapProp);
     }
     useEffect(() => {
         initMap();
